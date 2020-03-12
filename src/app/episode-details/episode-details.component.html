@@ -1,0 +1,211 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4 col-md-5">
+        <div class="card card-user">
+          <div class="imge">
+            <img src="{{'https://image.tmdb.org/t/p/w500'+media.still_path}}" alt="..." />
+          </div>
+          <hr>
+          <div class="text-center">
+            <div class="row">
+              <div class="col-xs-4 col-md-3 col-md-offset-1">
+                <h5>{{media.episode_number}}
+                  <br />
+                  <small>Episode</small>
+                </h5>
+              </div>
+              <div class="col-xs-4 col-md-4">
+                <h5>{{media.air_date}}
+                  <br />
+                  <small>Air date</small>
+                </h5>
+              </div>
+              <div class="col-xs-4 col-md-3">
+                <h5>{{media.vote_average}}
+                  <br />
+                  <small>Vote</small>
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Genre</h4>
+          </div>
+          <div class="content">
+            <div class="content">
+              <form>
+                <div>
+                  <label>
+                    <input type="checkbox" name="vehicle" value="Bike"> I have a bike</label>
+                </div>
+                <div>
+                  <label>
+                    <input type="checkbox" name="vehicle" value="Bike"> I have a car</label>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-7">
+        <div class="card">
+          <div class="header">
+              <button class="btn btn-info btn-fill btn-wd edit" (click)="editeDetails()">Edit</button>
+            <h4 class="title">Edit Details</h4>
+          </div>
+          <div class="content">
+            <form>
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label>Original ame</label>
+                    <input [(ngModel)]="media.name" name="original_title" type="text" class="form-control border-input" disabled placeholder="Company"
+                      value="Creative Code Inc.">
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <label>Name</label>
+                    <input [disabled]="NoEdite" [(ngModel)]="media.name" name="title" type="text" class="form-control border-input" placeholder="Username" value="michael23">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Air date</label>
+                    <input [disabled]="NoEdite" [(ngModel)]="media.air_date" name="release_date" type="date" class="form-control border-input" placeholder="Release date">
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Overview</label>
+                    <textarea [disabled]="NoEdite" [(ngModel)]="media.overview" name="overview" rows="5" class="form-control border-input" placeholder="Here can be your description"
+                      value="Mike">
+                                              Oh so, your weak rhyme
+                                              You doubt I'll bother, reading into it
+                                              I'll probably won't, left to my own devices
+                                              But that's the difference in our opinions.
+                                      </textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-info btn-fill btn-wd" (click)="addEpis(media)">Add / Update</button>
+              </div>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+        <div class="card">
+          <div class="header">
+            <h4 class="title">{{type}} Servers</h4>
+          </div>
+          <div class="content">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Server Name</th>
+                  <th>Server</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let m of links">
+                  <td></td>
+                  <td>{{m.Title}}</td>
+                  <td>{{m.url}}</td>
+                  <td>
+                    <a class="btn btn-danger" (click)="deleteServer(m.id)">
+                      <i class="fa fa-remove"></i>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>new</td>
+                  <td>
+                    <input [disabled]="disabled" type="text" class="form-control" placeholder="server name" [(ngModel)]="name" name="c">
+                  </td>
+                  <td>
+                    <input [disabled]="disabled" type="text" class="form-control" placeholder="url" [(ngModel)]="url" name="d">
+                  </td>
+                  <td>
+                    <button [disabled]="disabled" class="btn btn-primary" (click)="addServer(url,name)">
+                      <i class="fa fa-plus"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card" >
+          <div class="header">
+            <h4 class="title">{{type}} Showtimes</h4>
+          </div>
+          <div class="content">
+            
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Channel</th>
+              <th>Time</th>
+              <th>Day</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let m of showTimeList">
+              <td></td>
+              <td>{{m.channel}}</td>
+              <td>{{m.time}}</td>
+              <td>{{m.day}}</td>              
+              <td>
+                <a class="btn btn-danger" (click)="deleteTime(m.id)">
+                  <i class="fa fa-remove"></i>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>new</td>
+              <td>
+                <input [disabled]="disabled" type="text" class="form-control" placeholder="Channel" [(ngModel)]="showtime.channel" name="c">
+              </td>
+              <td>
+                <input [disabled]="disabled" type="time" class="form-control" placeholder="Time" [(ngModel)]="showtime.time" name="d">
+              </td>
+              <td>
+                <div class="btn-group">
+                  <select [disabled]="disabled" [(ngModel)]="showtime.day" name="original_language" class="form-control border-input" data-placeholder="Choose a Language...">
+                    <option value="Sunday">Sunday</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                  </select>
+                </div>
+              </td>
+              <td>
+                <a class="btn btn-primary" (click)="addShowtime()">
+                  <i class="fa fa-plus"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+          </div>
+        </div>
+      </div>
+  
+  
+  
+    </div>
+  </div>

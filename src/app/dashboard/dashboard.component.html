@@ -1,0 +1,221 @@
+<div class="container-fluid">
+  <!--   <button (click)="gethello()"></button> just for testing header in console -->
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <div class="card box" (click)="toggletype('Movie')">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-warning text-center">
+                                <i class="ti-video-clapper"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Movies</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr />
+                        <div class="stats">
+                            <i class="ti-server"></i> 102
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card box" (click)="toggletype('TV')">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-success text-center">
+                                <i class="ti-video-camera"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>TV Shows</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr />
+                        <div class="stats">
+                            <i class="ti-server"></i> 1,043
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card box" (click)="toggletype('Movie')">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-danger text-center">
+                                <i class="ti-pie-chart"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Categories</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr />
+                        <div class="stats">
+                            <i class="ti-server"></i> 1,043
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card box" (click)="toggletype('Movie')">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-info text-center">
+                                <i class="ti-comments"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Comment</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr />
+                        <div class="stats">
+                            <i class="ti-comment-alt"></i> +45
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+
+        <div class="card">
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <div class="section">
+                            <div class="container">
+                                <div class="row">
+                                    <div>
+                                        <div class="edit">
+                                            <label for="categ">Category : </label>
+                                            <div class="btn-group"> 
+                                                <select (click)="selectCate(__cate)"[(ngModel)]="__cate" name="category" class="form-control border-input" data-placeholder="Choose a Language...">
+                                                    <option value="none" selected >none</option>
+                                                    <option value="{{c.id}}" *ngFor="let c of category" >{{c.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <h3>{{type}}</h3>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>tmdb id</th>
+                                                    <th>
+                                                        <span>page : {{_page}}</span>
+                                                        <br>
+                                                        <a class="active btn btn-primary btn-xs" (click)="prevPage()">
+                                                            <i class="fa fa-fw fa-angle-left"></i>previous</a>
+                                                        <a class="active btn btn-primary btn-xs" (click)="nextPage()">next
+                                                            <i class="fa fa-fw fa-angle-right"></i>
+                                                        </a>
+
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let m of _data">
+                                                    <td>{{m.title}}</td>
+                                                    <td>{{m.tmdb}}</td>
+                                                    <td>
+                                                        <a class="active btn btn-primary btn-xs" (click)="actionClick(m.tmdb)">shows</a>
+                                                        <a class="active btn btn-danger btn-xs" (click)="deleteTmdb(m.tmdb)">delete</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card container" [ngClass]="{'hide': notVisible }">
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Seasons</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Season Number</th>
+                                    <th>Tmdb id</th>
+                                    <th>
+                                        <a class="active btn btn-primary btn-xs">
+                                            <i class="fa fa-fw fa-angle-left"></i>previous</a>
+                                        <a class="active btn btn-primary btn-xs">next
+                                            <i class="fa fa-fw fa-angle-right"></i>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let m of Seasons">
+                                    <td>{{m.num}}</td>
+                                    <td>{{m.tmdb}}</td>
+                                    <td>
+                                        <a class="active btn btn-primary btn-xs" (click)="loadEpi(m)">shows</a>
+                                        <a class="active btn btn-danger btn-xs" (click)="deleteSeasonTmdb(m.tmdb)">delete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Episodes</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Episode Number</th>
+                                    <th>Tmdb id</th>
+                                    <th>
+                                        <a class="active btn btn-primary btn-xs" (click)="prevpageEpi()">
+                                            <i class="fa fa-fw fa-angle-left"></i>previous</a>
+                                        <a class="active btn btn-primary btn-xs" (click)="nextpageEpi()" >next
+                                            <i class="fa fa-fw fa-angle-right"></i>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let m of Episodes">
+                                    <td>{{m.num}}</td>
+                                    <td>{{m.tmdb}}</td>
+                                    <td>
+                                        <a class="active btn btn-primary btn-xs" (click)="loadLink(m)">shows</a>
+                                        <a class="active btn btn-danger btn-xs" (click)="deleteEpisodeTmdb(m.tmdb)">delete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

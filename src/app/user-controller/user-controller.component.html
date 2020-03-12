@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="card">
+              <div class="header">
+                  <h4 class="title">Users</h4>
+                  <p class="category">List user constroller</p>
+              </div>
+              <div class="content table-responsive table-full-width">
+                  <table class="table table-striped">
+                      <thead>
+                          <tr>
+                              <th>Email</th>
+                              <th>Role</th>
+                              <th>Subscribed Since</th>
+                              <th><span>page : {{__page}}</span>
+                                <br>
+                                <a class="active btn btn-primary btn-xs" (click)="previous()">
+                                    <i class="fa fa-fw fa-angle-left"></i>previous</a>
+                                <a class="active btn btn-primary btn-xs" (click)="next()">next
+                                    <i class="fa fa-fw fa-angle-right"></i>
+                                </a></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let row of users">
+                              <td >{{row.email}}</td>
+                              <td ><select [(ngModel)]="row.role" name="role" class="form-control border-input" data-placeholder="Choose a Language...">
+                                    <option value="1">Subscriber</option>
+                                    <option value="2">Member</option>
+                                    <option value="9">Admin</option>
+                                </select></td>
+                              <td >{{row.created_at}}</td>
+                              <td>
+                                    <span class="input-group-btn">
+                                            <a class="btn btn-info btn-fill btn-w" type="submit" (click)="updateUser(row)">Update</a>
+                                            <a class="btn btn-danger btn-fill btn-w" type="submit" (click)="deleteUser(row.id)">Delete</a></span></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

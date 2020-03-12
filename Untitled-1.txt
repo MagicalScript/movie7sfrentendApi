@@ -1,0 +1,58 @@
+<div class="container row">
+  <h3>Seasons</h3>
+  <div>
+  <div class="card card-movie" *ngFor='let s of seasons'>
+
+    <div class="col-lg-2 col-xs-6 col-sm-4 col-md-3 movie-info" (click)='EpiDetails(s.season_number)'>
+
+      <div class="title">
+        Season : {{s.season_number}}
+      </div>
+      <div class="image">
+        <img src="{{'https://image.tmdb.org/t/p/w500'+s.poster_path}}" />
+      </div>
+      <div class="description">
+        <div>
+          <div class="dateleft">
+            <div name="calendar" class="icon-warning text-center"></div>
+            <div>date {{s.air_date | date: 'yyyy'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+</div>
+<div class="container row">
+    <h3>Episodes</h3>
+    <div>
+  <div class="card card-movie" *ngFor='let e of episodes'>
+
+    <div class="col-lg-2 col-xs-6 col-sm-4 col-md-3 movie-info" (click)='goToDetails(e.id)'>
+
+      <div class="title">
+        Episode : {{e.episode_number}} : {{e.name}}
+      </div>
+      <div class="image">
+        <img src="{{'https://image.tmdb.org/t/p/w500'+e.still_path}}" />
+      </div>
+      <div class="description">
+        <div>
+          <div class="dateleft">
+            <div name="calendar" class="icon-warning text-center"></div>
+            <div>date {{e.air_date | date: 'yyyy'}}</div>
+          </div>
+          <div>
+            <div name="star"></div>
+            <div>vote {{e.vote_average}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+</div>

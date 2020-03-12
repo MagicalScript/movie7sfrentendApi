@@ -1,0 +1,56 @@
+<div>
+  <div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center">Find Movies And Tv Shows</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+            <form role="form" (keyup.enter)="find(query)">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Enter imdb id" [(ngModel)]="query" name="q">
+                  <span class="input-group-btn">
+                    <a class="btn btn-success" type="submit" (click)="find(query)">Go</a>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="card card-movie" *ngFor='let movie of movies'>
+
+    <div class="col-lg-2 col-xs-6 col-sm-4 col-md-3 movie-info" (click)='goToDetails(movie.id,movie.media_type)'>
+
+      <div class="title">
+        {{movie.name}}{{movie.title}}
+      </div>
+      <div class="image">
+        <img src="{{'https://image.tmdb.org/t/p/w500'+movie.poster_path}}" />
+      </div>
+      <div class="description">
+        <div>
+          <div class="dateleft">
+            <div name="calendar" class="icon-warning text-center"></div>
+            <div>date {{movie.release_date | date: 'yyyy'}}{{movie.first_air_date | date: 'yyyy'}}</div>
+          </div>
+          <div>
+            <div name="star"></div>
+            <div>vote {{movie.vote_average}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
